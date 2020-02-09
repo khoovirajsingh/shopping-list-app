@@ -2,6 +2,6 @@
   (:require [clojure.test :refer :all]
             [shopping-list.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 1 1))))
+(deftest add-shopping-test
+  (testing "Adding item to shopping list."
+    (is (= 1 (count (add-shopping {:product "Milk" :amount "2 liter"}))))))
