@@ -19,5 +19,13 @@
     (add-shopping {:product product 
                    :amount amount})))
 
-
-
+(defn -main
+  [& args]
+  (loop [choice (prompt "Enter a number:\n1. Add product\n2. Save shopping list")]
+    (if (= choice "1")
+      (do (add-product-to-shoppings)
+          (recur (prompt "Enter a number:\n1. Add product\n2. Save shopping list")))
+      (if (= choice "2")
+        (println "Shopping list saved")
+        (do (println "Invalid choice!!! Try again")
+            (recur (prompt "Enter a number:\n1. Add product\n2. Save shopping list")))))))
