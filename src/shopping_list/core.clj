@@ -12,5 +12,12 @@
   (println msg)
   (read-line))
 
+(defn add-product-to-shoppings
+  []
+  (let [product (prompt "What to buy?")
+        amount (prompt "How many?")]
+    (add-shopping {:product product 
+                   :amount amount})))
+
 
 
