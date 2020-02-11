@@ -30,3 +30,8 @@
           (println "Shopping list saved"))
         (do (println "Invalid choice!!! Try again")
             (recur (prompt "Enter a number:\n1. Add product\n2. Save shopping list")))))))
+
+(defn shopping->str
+  [x]
+  (str (:product x) " * " (:amount x)))
+
