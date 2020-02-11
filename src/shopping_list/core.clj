@@ -26,6 +26,7 @@
       (do (add-product-to-shoppings)
           (recur (prompt "Enter a number:\n1. Add product\n2. Save shopping list")))
       (if (= choice "2")
-        (println "Shopping list saved")
+        (do (spit "./things-to-buy.txt" @shoppings)
+          (println "Shopping list saved"))
         (do (println "Invalid choice!!! Try again")
             (recur (prompt "Enter a number:\n1. Add product\n2. Save shopping list")))))))
