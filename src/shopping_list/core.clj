@@ -41,11 +41,10 @@
 (defn -main
   [& args]
   (loop [choice (prompt options)]
-    (if (= choice "1")
-      (do (add-product-to-shoppings)
-          (recur (prompt options)))
-      (if (= choice "2")
-        (do (save-shopping-list output-file @shoppings)
-          (println "Shopping list saved"))
-        (do (println "Invalid choice!!! Try again")
-            (recur (prompt options)))))))
+    (case choice
+      "1" (do (add-product-to-shoppings)
+            (recur (prompt options)))
+      "2" (do (save-shopping-list output-file @shoppings)
+            (println "Shopping list saved"))
+      (do (println "Invalid choice!!! Try again")
+        (recur (prompt options))))))

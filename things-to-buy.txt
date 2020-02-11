@@ -1,1 +1,1 @@
-[{:product "Milk", :amount "2 liters"}]
+apple * 3
