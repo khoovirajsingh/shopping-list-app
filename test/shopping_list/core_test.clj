@@ -9,5 +9,4 @@
 
 (deftest shoppping-item-formatting-test
   (testing "Formatting an item."
-    (is (= "Milk * 2" (shopping->str {:product "Milk" :amount "2"})))))
-
+    (is (= "Milk * 2\n" (shopping->str {:product "Milk" :amount "2"})))))

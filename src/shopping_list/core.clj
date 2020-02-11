@@ -19,6 +19,21 @@
     (add-shopping {:product product 
                    :amount amount})))
 
+(defn shopping->str
+  [x]
+  (str (:product x) " * " (:amount x) "\n"))
+
+(defn shopping-printable
+  [shoppings]
+  (clojure.string/join
+    "\n"
+    (map shopping->str shoppings)))
+
+(defn save-shopping-list
+  [file shoppings]
+  (spit file (shopping-printable shoppings)))
+
+
 (defn -main
   [& args]
   (loop [choice (prompt "Enter a number:\n1. Add product\n2. Save shopping list")]
@@ -26,12 +41,7 @@
       (do (add-product-to-shoppings)
           (recur (prompt "Enter a number:\n1. Add product\n2. Save shopping list")))
       (if (= choice "2")
-        (do (spit "./things-to-buy.txt" @shoppings)
+        (do (save-shopping-list "./things-to-buy.txt" @shoppings)
           (println "Shopping list saved"))
         (do (println "Invalid choice!!! Try again")
             (recur (prompt "Enter a number:\n1. Add product\n2. Save shopping list")))))))
-
-(defn shopping->str
-  [x]
-  (str (:product x) " * " (:amount x)))
-
