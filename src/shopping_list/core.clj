@@ -1,6 +1,10 @@
 (ns shopping-list.core
   (:gen-class))
 
+(def options "Enter a number:\n1. Add product\n2. Save shopping list")
+
+(def output-file "./things-to-buy.txt")
+
 (def shoppings (atom []))
 
 (defn add-shopping
@@ -36,12 +40,12 @@
 
 (defn -main
   [& args]
-  (loop [choice (prompt "Enter a number:\n1. Add product\n2. Save shopping list")]
+  (loop [choice (prompt options)]
     (if (= choice "1")
       (do (add-product-to-shoppings)
-          (recur (prompt "Enter a number:\n1. Add product\n2. Save shopping list")))
+          (recur (prompt options)))
       (if (= choice "2")
-        (do (save-shopping-list "./things-to-buy.txt" @shoppings)
+        (do (save-shopping-list output-file @shoppings)
           (println "Shopping list saved"))
         (do (println "Invalid choice!!! Try again")
-            (recur (prompt "Enter a number:\n1. Add product\n2. Save shopping list")))))))
+            (recur (prompt options)))))))
